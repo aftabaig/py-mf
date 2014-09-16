@@ -1,0 +1,67 @@
+<section class="panel">
+    <header class="panel-heading">
+        <ul class="breadcrumb">
+            <li class="big-font">
+                <a href="#/reports">Reports</a>
+            </li>
+            <li class="big-font">
+                All
+            </li>
+        </ul>
+    </header>
+    <div class="col-lg-6" style="left:25%">
+    <div class="panel-body" style="text-align:left;width:100%">
+        <section id="unseen">
+            <section class="panel">
+                <header class="panel-heading">
+                    Report
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2 control-label">Lease:</label>
+                            <div class="col-lg-10">
+                                <div class="btn-group">
+                                  <button ng-disabled="disableControls" ng-if="!selectedLease" class="btn btn-white" type="button" style="text-align:left;width:300px">Select a Lease</button>
+                                  <button ng-disabled="disableControls" ng-if="selectedLease" class="btn btn-white" type="button" style="text-align:left;width:300px">^^selectedLease.name^^</button>
+                                  <button ng-disabled="disableControls" data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                                  <ul role="menu" class="dropdown-menu" style="width:300px">
+                                      <li ng-repeat="lease in leases">
+                                          <a ng-click="selectLease(lease);">^^lease.name^^</a>
+                                      </li>
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2 control-label">Year:</label>
+                            <div class="col-lg-10">
+                                <div class="btn-group">
+                                  <button ng-disabled="disableControls" ng-if="!selectedYear" class="btn btn-white" type="button" style="text-align:left;width:200px">Select an Year</button>
+                                  <button ng-disabled="disableControls" ng-if="selectedYear" class="btn btn-white" type="button" style="text-align:left;width:200px">^^selectedYear^^</button>
+                                  <button ng-disabled="disableControls" data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                                  <ul role="menu" class="dropdown-menu" style="width:200px">
+                                      <li ng-repeat="year in years"><a ng-click="selectYear(year)">^^year^^</a></li>
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                <button ng-disabled="disableControls" ng-click="showReport();" type="submit" class="btn btn-danger">Show Report</button>
+                            </div>
+                        </div>
+                        <div class="progress progress-xs">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" ng-style="progressBar">
+                                <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </div>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />

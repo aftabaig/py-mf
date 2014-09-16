@@ -1,0 +1,63 @@
+<section class="panel">
+    <header class="panel-heading">
+        <ul class="breadcrumb">
+            <li class="big-font">
+                <a href="#/branches">Branches</a>
+            </li>
+            <li class="big-font">
+                All
+            </li>
+        </ul>
+    </header>
+    <div class="panel-body" style="margin-left:20px;margin-right:10px">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label>Branch Name</label>
+                <div>
+                    <input type="text" class="form-control" style="width:200px" placeholder="Name"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Branch Address</label>
+                <div>
+                    <input type="text" class="form-control" style="width:500px" placeholder="Address"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Postcode</label>
+                <div>
+                    <input type="text" class="form-control" style="width:150px" placeholder="Postcode"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Telephone</label>
+                <div>
+                    <input type="text" class="form-control" style="width:200px" placeholder="Telephone"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Fax</label>
+                <div>
+                    <input type="text" class="form-control" style="width:200px" placeholder="Fax"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <div>
+                    <input type="text" class="form-control" style="width:200px" placeholder="Email Address"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Opening Hours</label>
+                <div>
+                    <input type="text" class="form-control" style="width:100px" placeholder="Name"/>
+                    <input type="text" class="form-control" style="width:100px" placeholder="Name"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <button ng-click="save($index)" type="button" class="btn btn-success">Save</button>
+                <button ng-click="cancelAdd($index)" type="button" class="btn btn-primary">Cancel</button>
+            </div>
+        </form>
+    </div>
+</section>

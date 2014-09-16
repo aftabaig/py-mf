@@ -1,0 +1,116 @@
+<section class="panel">
+    <header class="panel-heading">
+        <ul class="breadcrumb">
+            <li class="big-font">
+                <a href="#/branches">Branches</a>
+            </li>
+            <li class="big-font">
+                All
+            </li>
+        </ul>
+    </header>
+    <div class="panel-body">
+        <section id="unseen">
+            <table style="width:125%" class="table table-bordered table-striped table-condensed" cg-busy="{promise:promise,message:message}">
+                <thead>
+                    <tr>
+                        <th class="big-font">Branch Name</th>
+                        <th style="width:25%" class="big-font">Address</th>
+                        <th class="big-font">Postcode</th>
+                        <th class="big-font">Telephone #</th>
+                        <th class="big-font">Fax</th>
+                        <th class="big-font">E-mail</th>
+                        <th class="big-font">Opening Hours</th>
+                        <th style="width:1%" class="big-font numeric">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="branch in branches">
+                        <td>
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <span>^^branch.name^^</span>
+                            </div>
+                            <div ng-if="branch.editing || branch.isNew">
+                                <input ng-model="branch.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <span>^^branch.address^^</span>
+                            </div>
+                            <div ng-if="branch.editing || branch.isNew">
+                                <input ng-model="branch.address" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <span>^^branch.postcode^^</span>
+                            </div>
+                            <div ng-if="branch.editing || branch.isNew">
+                                <input ng-model="branch.postcode" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <span>^^branch.telephone^^</span>
+                            </div>
+                            <div ng-if="branch.editing || branch.isNew">
+                                <input ng-model="branch.telephone" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <span>^^branch.fax^^</span>
+                            </div>
+                            <div ng-if="branch.editing || branch.isNew">
+                                <input ng-model="branch.fax" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                         <td>
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <span>^^branch.emailAddress^^</span>
+                            </div>
+                            <div ng-if="branch.editing || branch.isNew">
+                                <input ng-model="branch.emailAddress" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <span>^^branch.openingHours^^</span>
+                            </div>
+                            <div ng-if="branch.editing || branch.isNew">
+                                <input ng-model="branch.openingHours" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td class="numeric">
+
+                            <!-- Buttons normal mode -->
+                            <div ng-if="!branch.editing && !branch.isNew">
+                                <button ng-click="editInline($index)" type="button" class="btn btn-lg btn-warning">Edit</button>
+                                <button ng-click="confirmDelete($index)" type="button" class="btn btn-lg btn-danger">Delete</button>
+                            </div>
+                            <!-- Buttons normal mode ends -->
+
+                            <!-- Buttons edit mode -->
+                            <div ng-if="branch.editing && !branch.isNew">
+                                <button ng-click="update($index)" type="button" class="btn btn-lg btn-success">Update</button>
+                                <button ng-click="cancelEditing($index)" type="button" class="btn btn-lg btn-primary">Cancel</button>
+                            </div>
+                            <!-- Buttons edit mode ends -->
+
+                            <!-- Buttons add-new mode -->
+                            <div ng-if="branch.isNew">
+                                <button ng-click="save($index)" type="button" class="btn btn-success">Save</button>
+                                <button ng-click="cancelAdd($index)" type="button" class="btn btn-primary">Cancel</button>
+                            </div>
+                            <!-- Button add-new mode ends -->
+
+                        </td>
+                </tbody>
+            </table>
+            <button ng-click="add()" type="button" class="btn btn-default btn-lg">Add New Branch</button>
+        </section>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />

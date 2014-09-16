@@ -1,0 +1,76 @@
+<section class="panel">
+    <header class="panel-heading">
+        <ul class="breadcrumb">
+            <li class="big-font">
+                <a href="#/leases">Leases</a>
+            </li>
+            <li class="big-font">
+                ^^lease.name^^
+            </li>
+            <li class="big-font">
+                <a href="#/leases/^^lease.id^^/sheets">Sheets</a>
+            </li>
+            <li class="big-font">
+                ^^sheet.name^^
+            </li>
+            <li class="big-font">
+                <a href="#/leases/^^lease.id^^/sheets/^^sheet.id^^/subSheets">Sub-sheets</a>
+            </li>
+        </ul>
+    </header>
+    <div class="panel-body">
+        <section id="unseen">
+            <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th class="big-font">Sub-sheet Name</th>
+                        <th class="big-font numeric">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="subSheet in subSheets">
+                        <td style="width:80%">
+
+                            <div ng-if="!subSheet.editing && !subSheet.isNew">
+                                <a class="big-font" href='#/leases/^^lease.id^^/sheets/^^sheet.id^^/subSheets/^^subSheet.id^^/fields'>^^subSheet.name^^</a>
+                            </div>
+                            <div ng-if="subSheet.editing && !subSheet.isNew">
+                                <input ng-model="subSheet.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+                            <div ng-if="subSheet.isNew">
+                                <input ng-model="subSheet.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+
+                        </td>
+                        <td class="numeric">
+
+                            <!-- Buttons normal mode -->
+                            <div ng-if="!subSheet.editing && !subSheet.isNew">
+                                <button ng-click="editInline($index)" type="button" class="btn btn-lg btn-warning">Edit</button>
+                                <button ng-click="confirmDelete($index)" type="button" class="btn btn-lg btn-danger">Delete</button>
+                            </div>
+                            <!-- Buttons normal mode ends -->
+
+                            <!-- Buttons edit mode -->
+                            <div ng-if="subSheet.editing && !subSheet.isNew">
+                                <button ng-click="update($index)" type="button" class="btn btn-lg btn-success">Update</button>
+                                <button ng-click="cancelEditing($index)" type="button" class="btn btn-lg btn-primary">Cancel</button>
+                            </div>
+                            <!-- Buttons edit mode ends -->
+
+                            <!-- Buttons add-new mode -->
+                            <div ng-if="subSheet.isNew">
+                                <button ng-click="save($index)" type="button" class="btn btn-lg btn-success">Save</button>
+                                <button ng-click="cancelAdd($index)" type="button" class="btn  btn-lg btn-primary">Cancel</button>
+                            </div>
+                            <!-- Button add-new mode ends -->
+
+                        </td>
+                </tbody>
+            </table>
+            <button ng-click="add()" type="button" class="btn btn-default btn-lg">Add New Sub-sheet</button>
+        </section>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />

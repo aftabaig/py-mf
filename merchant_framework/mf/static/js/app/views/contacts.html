@@ -1,0 +1,155 @@
+<section class="panel">
+    <header class="panel-heading">
+        <ul class="breadcrumb">
+            <li class="big-font">
+                <a href="#/leases">Leases</a>
+            </li>
+            <li class="big-font">
+                ^^lease.name^^
+            </li>
+            <li class="big-font">
+                <a href="#/leases/^^lease.id^^/sheets">Sheets</a>
+            </li>
+            <li class="big-font">
+                ^^sheet.name^^
+            </li>
+            <li ng-if="subSheet" class="big-font">
+                <a href="#/leases/^^lease.id^^/sheets/^^sheet.id^^/subSheets">Sub-sheets</a>
+            </li>
+            <li ng-if="subSheet" class="big-font">
+                ^^subSheet.name^^
+            </li>
+            <li class="big-font">
+                <a ng-if="subSheet"  href="#/leases/^^lease.id^^/sheets/^^sheet.id^^/subSheets/^^subSheet.id^^/fields">Fields</a>
+                <a ng-if="!subSheet" href="#/leases/^^lease.id^^/sheets/^^sheet.id^^/fields">Fields</a>
+            </li>
+        </ul>
+    </header>
+    <div class="panel-body">
+        <section id="unseen">
+            <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th class="big-font">Field Name</th>
+                        <th class="big-font">Data Type</th>
+                        <th class="big-font">Min Value</th>
+                        <th class="big-font">Max Value</th>
+                        <th class="big-font">Formula</th>
+                        <th class="big-font" class="numeric">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="field in fields">
+
+                        <!-- Field name -->
+                        <td style="width:30%">
+
+                            <div ng-if="!field.editing && !field.isNew">
+                                <span class="big-font">^^field.name^^</span>
+                            </div>
+                            <div ng-if="field.editing && !field.isNew">
+                                <input ng-model="field.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+                            <div ng-if="field.isNew">
+                                <input ng-model="field.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+
+                        </td>
+                        <!-- Field name ends -->
+
+                        <!-- Data Type -->
+                        <td>
+                            <div ng-disabled="true" ng-if="!field.editing && !field.isNew">
+                                <select ng-model="field.data_type" class="form-control input-lg m-bot15">
+                                    <option ng-repeat="data_type in data_types">^^data_type^^</option>
+                                </select>
+                            </div>
+                            <div ng-if="field.editing && !field.isNew">
+                                <select ng-model="field.data_type" class="form-control input-lg m-bot15">
+                                    <option ng-repeat="data_type in data_types">^^data_type^^</option>
+                                </select>
+                            </div>
+                            <div ng-if="field.isNew">
+                                <select ng-model="field.data_type" class="form-control input-lg m-bot15">
+                                    <option ng-repeat="data_type in data_types">^^data_type^^</option>
+                                </select>
+                            </div>
+                        </td>
+                        <!-- Data Type ends -->
+
+                        <!-- Min value -->
+                        <td style="width:150px">
+
+                            <div ng-if="!field.editing && !field.isNew">
+                                <span class="big-font">^^field.min_value^^</span>
+                            </div>
+                            <div ng-if="field.editing && !field.isNew">
+                                <input ng-disabled="field.data_type != 'Numeric'" ng-model="field.min_value" class="form-control round-input big-font" type="text"/>
+                            </div>
+                            <div ng-if="field.isNew">
+                                <input ng-disabled="field.data_type != 'Numeric'" ng-model="field.min_value" class="form-control round-input big-font" type="text"/>
+                            </div>
+
+                        </td>
+                        <!-- Min value ends -->
+
+                        <!-- Max value -->
+                        <td style="width:150px">
+
+                            <div ng-if="!field.editing && !field.isNew">
+                                <span class="big-font">^^field.max_value^^</span>
+                            </div>
+                            <div ng-if="field.editing && !field.isNew">
+                                <input ng-disabled="field.data_type != 'Numeric'" ng-model="field.max_value" class="form-control round-input big-font" type="text"/>
+                            </div>
+                            <div ng-if="field.isNew">
+                                <input ng-disabled="field.data_type != 'Numeric'" ng-model="field.max_value" class="form-control round-input big-font" type="text"/>
+                            </div>
+
+                        </td>
+                        <!-- Max value ends -->
+
+                        <!-- Calculation (Total/Average) -->
+                        <td>
+                            <div class="big-font">
+                                Total: <input type="checkbox"  value="field.calculate_total">
+                                Average: <input type="checkbox" value="field.calculate_total">
+                            </div>
+                        </td>
+                        <!-- Calculation (Total/Average) ends -->
+
+                        <!-- Buttons -->
+                        <td class="numeric">
+
+                            <!-- Buttons normal mode -->
+                            <div ng-if="!field.editing && !field.isNew">
+                                <button ng-click="editInline($index)" type="button" class="btn btn-warning btn-lg">Edit</button>
+                                <button ng-click="confirmDelete($index)" type="button" class="btn btn-danger btn-lg">Delete</button>
+                            </div>
+                            <!-- Buttons normal mode ends -->
+
+                            <!-- Buttons edit mode -->
+                            <div ng-if="field.editing && !field.isNew">
+                                <button ng-click="update($index)" type="button" class="btn btn-success btn-lg">Update</button>
+                                <button ng-click="cancelEditing($index)" type="button" class="btn btn-primary btn-lg">Cancel</button>
+                            </div>
+                            <!-- Buttons edit mode ends -->
+
+                            <!-- Buttons add-new mode -->
+                            <div ng-if="field.isNew">
+                                <button ng-click="save($index)" type="button" class="btn btn-success btn-lg">Save</button>
+                                <button ng-click="cancelAdd($index)" type="button" class="btn btn-primary btn-lg">Cancel</button>
+                            </div>
+                            <!-- Button add-new mode ends -->
+
+                        </td>
+                        <!-- Buttons ends -->
+                    </tr>
+                </tbody>
+            </table>
+            <button ng-click="add()" type="button" class="btn btn-default btn-lg">Add New Field</button>
+        </section>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />

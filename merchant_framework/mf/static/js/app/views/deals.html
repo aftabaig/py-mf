@@ -1,0 +1,107 @@
+<section class="panel">
+    <header class="panel-heading">
+        <ul class="breadcrumb">
+            <li class="big-font">
+                <a href="#/deals">Deals</a>
+            </li>
+            <li class="big-font">
+                All
+            </li>
+        </ul>
+    </header>
+    <div class="panel-body">
+        <section id="unseen">
+            <table class="table table-bordered table-striped table-condensed" cg-busy="{promise:promise,message:message}">
+                <thead>
+                    <tr>
+                        <th class="big-font">Deal Description</th>
+                        <th class="big-font">Info</th>
+                        <th class="big-font">Available Online</th>
+                        <th class="big-font">Deal Ends</th>
+                        <th class="big-font">Contact #</th>
+                        <th class="big-font">Branches</th>
+                        <th class="big-font numeric">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="deal in deals">
+                        <td>
+                            <div ng-if="!deal.editing && !deal.isNew">
+                                <span>^^deal.name^^</span>
+                            </div>
+                            <div ng-if="deal.editing || deal.isNew">
+                                <input ng-model="lease.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!deal.editing && !deal.isNew">
+                                <span>^^deal.info^^</span>
+                            </div>
+                            <div ng-if="deal.editing || deal.isNew">
+                                <input ng-model="lease.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!deal.editing && !deal.isNew">
+                                <span>^^deal.availableOnline^^</span>
+                            </div>
+                            <div ng-if="deal.editing || deal.isNew">
+                                <input ng-model="deal.availableOnline" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!deal.editing && !deal.isNew">
+                                <span>^^deal.availability^^</span>
+                            </div>
+                            <div ng-if="deal.editing || deal.isNew">
+                                <input ng-model="deal.availability" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!deal.editing && !deal.isNew">
+                                <span>^^deal.name^^</span>
+                            </div>
+                            <div ng-if="deal.editing || deal.isNew">
+                                <input ng-model="lease.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="!deal.editing && !deal.isNew">
+                                <span>^^deal.name^^</span>
+                            </div>
+                            <div ng-if="deal.editing || deal.isNew">
+                                <input ng-model="lease.name" class="form-control round-input big-font" type="text"/>
+                            </div>
+                        </td>
+                        <td class="numeric">
+
+                            <!-- Buttons normal mode -->
+                            <div ng-if="!lease.editing && !lease.isNew">
+                                <button ng-click="editInline($index)" type="button" class="btn btn-lg btn-warning">Edit</button>
+                                <button ng-click="confirmDelete($index)" type="button" class="btn btn-lg btn-danger">Delete</button>
+                            </div>
+                            <!-- Buttons normal mode ends -->
+
+                            <!-- Buttons edit mode -->
+                            <div ng-if="lease.editing && !lease.isNew">
+                                <button ng-click="update($index)" type="button" class="btn btn-lg btn-success">Update</button>
+                                <button ng-click="cancelEditing($index)" type="button" class="btn btn-lg btn-primary">Cancel</button>
+                            </div>
+                            <!-- Buttons edit mode ends -->
+
+                            <!-- Buttons add-new mode -->
+                            <div ng-if="lease.isNew">
+                                <button ng-click="save($index)" type="button" class="btn btn-lg btn-success">Save</button>
+                                <button ng-click="cancelAdd($index)" type="button" class="btn  btn-lg btn-primary">Cancel</button>
+                            </div>
+                            <!-- Button add-new mode ends -->
+
+                        </td>
+                </tbody>
+            </table>
+            <button ng-click="add()" type="button" class="btn btn-default btn-lg">Add New Lease</button>
+        </section>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />

@@ -1,0 +1,45 @@
+<div class="modal-dialog" style="margin-top:0% !important" ng-hide="!showSheetSelectionPopup">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button ng-click="hideSheetSelectionPopup()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Select azxcvzxcvzxcva sheet/sub-sheet</h4>
+        </div>
+        <div style="text-align:center" class="modal-body">
+            <table border="0px" style="width:1000%">
+                <tr>
+                    <td style="big-font">
+                        Lease:
+                    </td>
+                    <td>
+                        <select ng-options="lease as lease.name for lease in leases" ng-change="onLeaseChange(lease)" ng-model="lease" class="form-control bound-s big-font" style="width:100%">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="big-font">
+                        Sheet:
+                    </td>
+                    <td>
+                        <select ng-options="sheet as sheet.name for sheet in sheets" ng-change="onSheetChange(sheet)" ng-model="sheet" class="form-control bound-s big-font" style="width:100%">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="big-font">
+                        Sub-sheet:
+                    </td>
+                    <td>
+                        <select ng-options="subSheet as subSheet.name for subSheet in subSheets" ng-change="onSubSheetChange(subSheet)" ng-model="subSheet" class="form-control bound-s big-font" style="width:100%">
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <span sytle="color:red">^^message^^</span>
+            <button ng-click="submit()" class="btn btn-primary" type="button">Go</button>
+        </div>
+    </div>
+</div>
+
+<div class="overlay3" ng-hide="!showSheetSelectionPopup" />
